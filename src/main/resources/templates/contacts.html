@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contacts Management System</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Phonebook</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/contacts}">Phonebook Management</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+<br>
+<div class="container">
+  <div class = "row">
+    <h1> List Contacts </h1>
+  </div>
+  <div class = "row">
+    <div class = "col-lg-3">
+      <a th:href="@{/contacts/new}" class = "btn btn-secondary btn-sm mb-2", style="background-color: #7b3f8d;">Add Contact</a>
+    </div>
+
+  </div>
+  <table class = "table table-striped table-bordered">
+    <thead class = "table-primary" style="background-color: #7b3f8d;">
+    <tr>
+      <th>Contact name</th>
+      <th>Contact number</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each = "contact: ${contacts}">
+      <td th:text = "${contact.name}"></td>
+      <td th:text = "${contact.number}"></td>
+      <td>
+        <div class = "btn-group">
+        <a th:href="@{/contacts/edit/{id}(id=${contact.id})}" class="btn btn-secondary" style="background-color: #7b3f8d;">edit</a>
+        <a th:href="@{/contacts/{id}(id=${contact.id})}" class="btn btn-secondary" style="background-color: #7b3f8d;">del</a>
+        </div>
+      </td>
+
+    </tr>
+    </tbody>
+
+  </table>
+</div>
+</body>
+</html>
