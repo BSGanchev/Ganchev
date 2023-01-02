@@ -3,8 +3,10 @@ package com.example.phonebook.service.implement;
 import com.example.phonebook.entity.Contact;
 import com.example.phonebook.repository.ContactRepository;
 import com.example.phonebook.service.ContactService;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 @Service
 public class ContactServiceImplement implements ContactService {
@@ -18,7 +20,7 @@ public class ContactServiceImplement implements ContactService {
 
     @Override
     public List<Contact> getAllContacts() {
-        return contactRepository.findAll();
+        return contactRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
 
     @Override
